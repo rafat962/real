@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reale state website</title>
+    <link rel="stylesheet" href="{% static 'css/style3.css' %}">
+    <!-- box icons -->
+    <link rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- box icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,800;0,900;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <a href="#" class="logo">
+            <img src="{% static 'img/logo.png' %}" alt="">
+        </a>
+        <ul class="navbar">
+            <li><a href="#">Home</a></li>
+            <li><a href="#abo">About</a></li>
+            <li><a href="#part">Buying</a></li>
+            <li><a href="#part">Renting</a></li>
+            <li><a href="#part">Selling</a></li>
+            <li><a href="#con">Contact Us</a></li>
+            <li><a href="#ma">Map</a></li>
+        </ul>
+        <div class="h-btn" id="ico">
+            <a href="#" class="h-btn1">Login</a>
+            <a href="#" class="h-btn2">Sign up</a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+
+    </header>
+    <!-- header -->
+
+    <!-- home section -->
+    <section class="home">
+        <div class="home-text" data-aos="zoom-in-up">
+            <h1>Your House is Wating FOR You</h1>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos cupiditate nihil distinctio architecto! 
+                Consequatur aperiam pariatur nesciunt,
+                 culpa eos ipsam error aspernatur necessitatibus.</p>
+            <div class="h-search">
+                <form >
+                    <input type="search" placeholder="Search by location..." class="search-input">
+                    <input type="submit" value="Search">
+                </form>
+            </div>
+        </div>
+        <div class="home-img" data-aos="zoom-in-up">
+            <img src=" {% static 'img/pexels-evgeny-tchebotarev-2187605.jpg' %} " alt="">
+        </div>
+    <!-- home section -->
+    </section>
+    <!-- feature section -->
+    <section class="feature" data-aos="zoom-in-up">
+        <div class="center-left">
+            <h2>Feature In</h2>
+        </div>
+        <div class="feature-content">
+            <div class="f-img">
+                <img src=" {% static 'img/f1.png' %} " >
+            </div>
+            <div class="f-img">
+                <img src=" {% static 'img/f2.png' %} "  >
+            </div>
+            <div class="f-img">
+                <img src=" {% static 'img/f3.png' %} "  >
+            </div>
+            <div class="f-img">
+                <img src=" {% static 'img/f4.png' %} "  >
+            </div>
+            <div class="f-img">
+                <img src=" {% static 'img/f5.png' %} "  >
+            </div>
+        </div>
+    </section>
+    <!-- property section -->
+    <section class="property" data-aos="zoom-in-up" id="part"  style="display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 2rem;
+    margin-top: 3rem ;" >
+        {% for x in main %}
+        <div class="property-content" >
+            <div class="row" style="display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;">
+                <h5 style="margin-bottom: 20px;">{{x.flat_name}}</h5>
+                <img src="{{x.flat_img.url}}" alt="" style="width: 500px;
+                height: 400px;" >
+                <p style="margin-top: 20px;">{{x.flat_dic}}</p>
+                <div class="list">
+                    <a href="#" class="Residence-list">
+                        <i class='bx bx-bed'></i>
+                        {{x.num_bed}} bedrooms
+                    </a>
+                    <a href="#" class="Residence-list">
+                        <i class='bx bx-bath'></i>
+                        {{x.num_path}} pathrooms
+                    </a>
+                    <a href="#" class="Residence-list">
+                        <i class='bx bx-shape-square' ></i>
+                        {{x.num_sq}} sqm
+                    </a>
+                    <form method="post" class="btn" action="flat">
+                        {% csrf_token %}
+                        <input type="hidden" name="hid_id" value="{{x.iid}}">
+                        <input type="submit" class="view" value="View All properties" style="cursor: pointer;
+                        color: rgb(255, 251, 251);
+                        background-color: black;
+                        font-size: 15px;">
+                    </form>
+                        
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+    <!-- about us -->
+    <section class="about" data-aos="zoom-in-up" id="abo">
+        <div class="about-img">
+            <img src=" {% static 'img/Group 1.png' %} "  >
+        </div>
+        <div class="about-text">
+            <h2>We Help People To Find Homes</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis laboriosam sint,
+                 a eveniet vero inventore voluptatem esse doloribus laborum dolorum.</p>
+            <a href="#" class="btn">Contact Us</a>     
+        </div>
+    </section>
+    <!-- subscribe -->
+    <section class="subscribe" data-aos="zoom-in-up">
+        <div class="subscribe-content" style="display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        background: url({{about.sub_img.url}});
+        background-size: cover;
+        background-position: center;
+        border-radius: 20px;
+        padding: 6rem 3rem;">
+            <h2>Let's Simply Being With Rentiz.</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet placeat maxime recusandae quod est veritatis doloribus, 
+                esse impedit, laudantium doloremque harum molestiae. Quam, quod fuga?</p>
+            <a href="" class="btn">Get Started</a>  
+        </div>
+    </section>
+        <!-- map -->
+        <section class="map" data-aos="zoom-in-up" id="ma">
+            <div class="title">
+                <h2>map</h2>
+            </div>
+            <div class="arc-map" >
+                <style>.embed-container {position: relative; padding-bottom: 60%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}</style><div class="embed-container"><iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="f" src="//gia3bf2a50020f81.maps.arcgis.com/apps/Embed/index.html?webmap=6314d4e6d65d479ab570c3772982b21d&extent=30.9832,30.041,30.9964,30.0472&home=true&zoom=true&previewImage=false&scale=true&search=true&searchextent=true&legend=true&disable_scroll=true&theme=dark"></iframe></div>
+            </div> 
+        </section>
+    <!-- contact -->
+    <section class="contact" data-aos="zoom-in-up" id="con" style="margin-top: 0px;">
+        <div class="contact-content">
+            <img src="img/logo.png" alt="">
+            <p>Lorem ipsum dolor sit amet consectetur 
+                adipisicing elit. Illo, fuga.</p>
+            <div class="icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-instagram' ></i></a>
+                <a href="#"><i class='bx bxl-twitter' ></i></a>
+                <a href="#"><i class='bx bxl-youtube' ></i></a>
+            </div>    
+        </div>
+        <div class="contact-content">
+            <h4>Projects</h4>
+            <li><a href="#">Houses</a></li>
+            <li><a href="#">Rooms</a></li>
+            <li><a href="#">Flats</a></li>
+            <li><a href="#">Apartment</a></li>
+        </div>
+        <div class="contact-content">
+            <h4>Projects</h4>
+            <li><a href="#">Houses</a></li>
+            <li><a href="#">Rooms</a></li>
+            <li><a href="#">Flats</a></li>
+            <li><a href="#">Apartment</a></li>
+        </div>
+        <div class="contact-content">
+            <h4>Projects</h4>
+            <li><a href="#">Houses</a></li>
+            <li><a href="#">Rooms</a></li>
+            <li><a href="#">Flats</a></li>
+            <li><a href="#">Apartment</a></li>
+        </div>
+        <div class="contact-content" >
+            <h4>Projects</h4>
+            <li><a href="#">Houses</a></li>
+            <li><a href="#">Rooms</a></li>
+            <li><a href="#">Flats</a></li>
+            <li><a href="#">Apartment </a></li>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset:300,
+        duration:1200
+      });
+    </script>
+
+    <script src="{% static 'js/script.js' %}"></script>
+      
+</body>
+</html>

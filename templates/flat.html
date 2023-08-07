@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style4.css' %}">
+    <!-- box icons -->
+    <link rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="{% static 'img/logo.png' %}" alt="">
+        </a>
+        <ul class="navbar">
+            <li><a href="#">Home</a></li>
+            <li><a href="#ma">Map</a></li>
+            <li><a href="#con">Contact Us</a></li>
+        </ul>
+        <div class="h-btn" id="ico">
+            <a href="#" class="h-btn1">Login</a>
+            <a href="#" class="h-btn2">Sign up</a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+    </header>
+    <section class="department">
+        <div class="head">
+            
+            <div class="apartment" style="background-color: rgb(28, 0, 105); padding:20px;">
+                <img src="{{b.flat_img.url}}" alt="">
+                <div class="de">
+                    <h2 style="padding-left: 0;background-color:  rgb(28, 0, 105);">{{b.flat_name}}</h2>
+                    <h3>Apartment</h3>
+                    <h1>{{main.flat_price}}</h1>
+                    <h3>{{main.flat_loac}}</h3>
+                    <br>
+                    <i class='bx bx-current-location'>{{main.detail_loac}}</i>
+                    <div class="details">
+                        <i class='bx bx-bed' > {{b.num_bed}} bedrooms</i>
+                        <i class='bx bx-bath' > {{b.num_path}} bathrooms</i>
+                        <i class='bx bx-shape-square' > {{b.num_sq}} sqm</i>
+                    </div>
+                    <form method="post" action="/">
+                        {% csrf_token %}
+                        <i class='bx bx-phone-call'  ><input type="number" name="num" id="call" placeholder="Enter your number and we will contact you"></i>
+                        <input type="hidden" value="{{main.iid}}" name="nm">
+                        <input type="submit" value="Call Us" id="sub" style="cursor: pointer;">
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="photos" style="background-color:  rgb(28, 0, 105); padding: 10px;">
+            <img src="{{main.ph_1.url}}" alt="">
+            <img src="{{main.ph_2.url}}" alt="">
+            <img src="{{main.ph_3.url}}" alt="">
+            <img src="{{main.ph_4.url}}" alt="">
+            <img src="{{main.ph_5.url}}" alt="">
+        </div>
+    <script src="{% static 'js/script.js' %}"></script>
+
+    </section>
+            <!-- map -->
+    <section class="map" data-aos="zoom-in-up" id="ma">
+        <div class="title">
+            <h2>map</h2>
+        </div>
+        <div class="arc-map" style="margin-bottom: 500px;">
+            <style>.embed-container {position: relative; padding-bottom: 60%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}</style><div class="embed-container"><iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="f" src="//gia3bf2a50020f81.maps.arcgis.com/apps/Embed/index.html?webmap=6314d4e6d65d479ab570c3772982b21d&extent={{main.x1}},{{main.y1}},{{main.x2}},{{main.y2}}&home=true&zoom=true&previewImage=false&scale=true&search=true&searchextent=true&legend=true&disable_scroll=true&theme=dark"></iframe></div>
+        </div> 
+    </section>
+</body>
+</html>
+
